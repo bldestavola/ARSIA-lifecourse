@@ -1,14 +1,3 @@
-*cd "N:\_COMMITMENTS\LC-REVIEW\data"
-*adopath ++ "N:\_GFORMULA\version 1.14 beta"
-cd "S:\_COMMITMENTS\LC-REVIEW\data"
-adopath ++ "S:\_GFORMULA\version 1.14 beta"
-
-cap log close
-clear all
-set more off
-set seed 210404
-log using example2_growth_interventional_linear.log,replace
-
 use example2, clear
 
 
