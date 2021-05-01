@@ -1,0 +1,26 @@
+TITLE: Natural effects of birth weight on binge eating via BMI at 12
+
+DATA: FILE IS "example.dat";
+      Format is free;
+      LISTWISE=ON;
+
+VARIABLE: NAMES ARE id y  bw lbmi7 lbmi9 lbmi10 lbmi11 lbmi12 c1 c2 c3 c4  matBMI;
+          USEV ARE y  bw  lbmi12 c1 c2 c3 c4  matBMI;
+          MISSING ARE .;
+          IDVARIABLE= id;
+
+DEFINE: 
+
+ANALYSIS:
+
+MODEL:
+ 
+y      ON bw lbmi12 c1 c2 c3 c4  matBMI;
+lbmi12 ON bw        c1 c2 c3 c4  matBMI;
+   
+MODEL INDIRECT:  y IND bw ;
+
+OUTPUT:  SAMPSTAT STD  CINTERVAL INDIRECT;
+
+
+

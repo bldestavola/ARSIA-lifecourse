@@ -1,0 +1,29 @@
+TITLE: Interventional effects of birth weight on binge eating via BMI from 7 to 12
+
+DATA: FILE IS "example.dat";
+      Format is free;
+      LISTWISE=ON;
+
+VARIABLE: NAMES ARE id y  bw lbmi7 lbmi9 lbmi10 lbmi11 lbmi12 c1 c2 c3 c4  matBMI;
+          USEV ARE y  bw lbmi7 lbmi9 lbmi10 lbmi11 lbmi12  c1 c2 c3 c4  matBMI;
+          MISSING ARE .;
+          IDVARIABLE= id;
+
+DEFINE: 
+
+ANALYSIS:
+
+MODEL:
+y      ON bw  lbmi7 lbmi9 lbmi10 lbmi11 lbmi12 c1 c2 c3 c4  matBMI;
+lbmi12 ON bw                             c1 c2 c3 c4  matBMI;
+lbmi11 ON bw                             c1 c2 c3 c4  matBMI;
+lbmi10 ON bw                              c1 c2 c3 c4  matBMI;
+lbmi9  ON bw                              c1 c2 c3 c4  matBMI;
+lbmi7  ON bw                              c1 c2 c3 c4  matBMI;
+  
+MODEL INDIRECT:  y IND bw ;
+
+OUTPUT:  SAMPSTAT STD  CINTERVAL INDIRECT;
+
+
+
